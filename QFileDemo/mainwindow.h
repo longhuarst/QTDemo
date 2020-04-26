@@ -18,10 +18,13 @@ public:
 private slots:
     void on_pushButtonOpenFile_clicked();
 
+    void on_pushButtonOpenFileSaveAs_clicked();
+
 private:
     Ui::MainWindow *ui;
 
 
     bool openTextByIODevice(const QString &aFileName);
+    bool saveTextByIODevice(const QString &aFileName);
 };
 #endif // MAINWINDOW_H

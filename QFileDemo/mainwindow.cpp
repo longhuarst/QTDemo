@@ -30,12 +30,19 @@ bool MainWindow::openTextByIODevice(const QString &aFileName)
         return false;
     }
 
+    //QIODevice::OpenModeFlag
+    //  QIODevice::ReadOnly
+    //  QIODevice::WriteOnly
+    //  QIODevice::ReadWrite
+    //  QIODevice::Append       添加模式打开， 新写入的内容会被追加到原来末尾。
+    //  QIODevice::Truncate     以截取方式打开文件，文档原有的内容会被全部删除。
+    //  QIODevice::Text         以文本方式打开     \n会被自动翻译为换行符， 写入时会自动翻译为对应平台的编码
     if (!aFile.open(QIODevice::ReadOnly | QIODevice::Text)){
         return false;
     }
 
     ui->textEdit->setPlainText(aFile.readAll());
-    aFile.close();
+    aFile.close();  //关闭文件
 
     return true;
 
@@ -61,7 +68,48 @@ void MainWindow::on_pushButtonOpenFile_clicked()
 
 
 
+bool MainWindow::saveTextByIODevice(const QString &aFileName)
+{
+    //用IODevice方式保存文本文件
+    QFile aFile(aFileName);
 
+
+    //QIODevice::OpenModeFlag
+    //  QIODevice::ReadOnly
+    //  QIODevice::WriteOnly
+    //  QIODevice::ReadWrite
+    //  QIODevice::Append       添加模式打开， 新写入的内容会被追加到原来末尾。
+    //  QIODevice::Truncate     以截取方式打开文件，文档原有的内容会被全部删除。
+    //  QIODevice::Text         以文本方式打开     \n会被自动翻译为换行符， 写入时会自动翻译为对应平台的编码
+    if (!aFile.open(QIODevice::WriteOnly | QIODevice::Text)){
+        return false;
+    }
+
+    QString str = ui->textEdit->toPlainText();//整个内容作为字符串
+    QByteArray strBytes = str.toUtf8();//转换为字节数组
+    aFile.write(strBytes, strBytes.length());//写入文件
+    aFile.close();  //关闭文件
+
+    return true;
+
+}
+
+
+//文件另存为
+void MainWindow::on_pushButtonOpenFileSaveAs_clicked()
+{
+    //打开文件
+    QString curPath = QDir::currentPath();
+
+    QString aFileName = QFileDialog::getSaveFileName(this,
+                                                     "另存为一个文件",
+                                                     curPath,
+                                                     "程序文件(*.h *.cpp);;文本文件(*.txt);;所有文件(*.*)");
+    if (aFileName.isEmpty())
+        return;
+
+   saveTextByIODevice(aFileName);
+}
 
 
 
