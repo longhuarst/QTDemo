@@ -20,11 +20,18 @@ private slots:
 
     void on_pushButtonOpenFileSaveAs_clicked();
 
+    void on_pushButtonOpenFileQTextString_clicked();
+
+    void on_pushButtonOpenFileQTextStream_clicked();
+
 private:
     Ui::MainWindow *ui;
 
 
     bool openTextByIODevice(const QString &aFileName);
     bool saveTextByIODevice(const QString &aFileName);
+    bool openTextByStream(const QString &aFileName);
+    bool openTextByStreamReadLine(const QString &aFileName);
+    bool saveTextByStream(const QString &aFileName);
 };
 #endif // MAINWINDOW_H

@@ -50,7 +50,7 @@
      <string>文本文件另存为</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButtonOpenFile_2">
+   <widget class="QPushButton" name="pushButtonOpenFileQTextString">
     <property name="geometry">
      <rect>
       <x>300</x>
@@ -63,7 +63,7 @@
      <string>QTextStream打开</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButtonOpenFile_3">
+   <widget class="QPushButton" name="pushButtonOpenFileQTextStream">
     <property name="geometry">
      <rect>
       <x>460</x>
@@ -83,7 +83,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
